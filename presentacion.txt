@@ -1,3 +1,16 @@
-Presentación de proyecto:
+Equipo - Club 5
 
-Presentacion integrantes:
+Club 5 es una empresa que desarrolla software dirigido a empresas manufactureras.
+
+Somos especialistas en brindar soluciones para controlar  las ventas físicas y virtuales de su organización.
+Así mismo contarán con total respaldo y acompañamiento para dar seguimiento a sus inquietudes y  a los procesos de ventas.
+¿Que encontrarán en nuestra App?
+Tendrán acceso a:
+Modulo administración de ventas: permite ingresar o registrar los pedidos físicos o virtuales
+Modulo para registrar el estado de la venta: Aquí podrás dar seguimiento a los estados de la compra, embalaje, despacho, ruta y ubicación para finalmente ser adquirido.
+Gestión de vendedores: con este modulo puede llevar el control de las ventas de cada uno de los colaboradores.
+Gestión de ingreso al sistema de información: Aquí podrá generar un usuario y contraseña para tener acceso a toda la información.
+Gestión de usuarios y roles: Aquí podrá llevar el seguimiento de todos sus colaboradores, contarán con un usuario único con el fin de restringir/otorgar accesos al sistema de información.
+
+Rol: Product Owner - María Camila Restrepo Silva - mariacamilarestrepo04@gmail.com
+Función: Conocer el producto software que se va a elaborar en el proyecto 
