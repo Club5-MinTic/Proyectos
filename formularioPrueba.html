@@ -9,10 +9,40 @@
 </head>
 <body class="container">
 
-    
+    <!-- (identificador del producto,
+descripción del producto, valor unitario, y
+estado: disponible, no disponible; no se
+contemplan impuestos ni valores
+adicionales) y crear la interfaz del maestro
+de productos (se pueden ver, buscar y
+actualizar los productos) -->
 
-
-
+    <form>
+        <label for="id">
+            Ingrese ID del producto.
+            <input name="id"/>
+        </label>
+        <br>
+        <label>
+            Ingrese descripción del producto:
+            <textarea name="comentarios" rows="5" cols="40"></textarea>
+        </label>
+        <br>
+        <label>
+            Ingrese valor unitario:
+            <input type="number">
+        </label>
+        <br>
+        <label>
+            Seleccione estado del producto:
+            <input type="radio" name="hm" value="h"> Disponible
+            <input type="radio" name="hm" value="m"> No disponible
+        </label>
+        <p>
+            <input type="submit" value="Registrar">
+            <input type="reset" value="Borrar">
+        </p>
+    </form>
 </body>
 </html>
 

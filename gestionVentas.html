@@ -1,12 +1,13 @@
 <!DOCTYPE html>
-<html lang="es">
+<html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="./estilos_sprint2.css">
+    <title>Gestión de ventas</title>
     <link  rel="icon"   href="./media/logo.png" type="imagen/png">
-    <title>Komuya</title>
+    <link rel="stylesheet" href="./estilos_sprint2.css">
+
 </head>
 <body>
     <header>
@@ -18,9 +19,11 @@
             <nav class="minav">
                 <a href="./Formulario.html">Iniciar sesión</a>
             </nav>
-        </div>
+        </div>    
     </header>
+
     <section>
+
         <div id="sidemenu" class="menu-collapsed">
             
             <!-- ENCABEZADO -->
@@ -44,7 +47,7 @@
         <div id="menu-items">
             <div class="item">
                 <a href="index.html">
-                    <div class="icon"><img src="/Menú/simbolo.png" alt=""> </div> 
+                    <div class="icon"><img src="./Menú/simbolo.png" alt=""> </div> 
                     <div class="title"><span>Inicio</span></div>
                 </a>
             </div>
@@ -55,7 +58,7 @@
 
 
             <div class="item">
-                <a href="./gestionVentas.html">
+                <a href="gestionVentas.html">
                     <div class="icon"><img src="./Menú/simbolo.png" alt=""> </div> 
                     <div class="title"><span>Información de Ventas</span></div>
                 </a>
@@ -66,12 +69,11 @@
 
 
             <div class="item">
-                <a href="./gestionProductos.html">
+                <a href="gestionProductos.html">
                     <div class="icon"><img src="./Menú/simbolo.png" alt=""> </div> 
                     <div class="title"><span>Gestión de productos</span></div>
                 </a>
             </div>
-
 
             <div class="item separator">     
             </div>
@@ -104,10 +106,79 @@
             });
         </script>
     </section>
-    <section>
-        <img src="./media/fondo5.png" alt="Paisaje" width="1300px">
 
+    <section class="form-product">
+        <br>
+        <br>
+        <br>
+        <br>
+        <br>
+        <br>
+        <br>
+        <br>
+        <br>
+        <br>
+        <br>
+        <br>
+    
+        <h1 class="titulo">REGISTRO DE VENTAS</h1><br>
+        <Label class="label">ID de venta</Label>
+        <input class="controls-product" type="number" placeholder="Ingrese solo numeros">
+        <br>
+        <Label class="label">Valor total</Label>
+        <input class="controls-product" type="number" placeholder="Ingrese Descripcion del producto">
+        <br>
+        <Label class="label">Cantidad</Label>
+        <input class="controls-product" type="number" placeholder="Ingrese valor del producto">
+        <br>
+        <Label class="label">Precio unitario</Label>  
+        <input type="number">
+        <br>    
+        <label>
+            Fecha de venta:
+            <input type="date">
+        </label> 
+        <br>
+        <label>
+            Documento de identificación:
+            <input type="text">
+        </label> 
+        <br>
+        <label>
+            Nombre del cliente:
+            <input type="text">
+        </label>
+        <br>
+        <label>
+            Vendedor:
+            <input type="text">
+        </label> 
+        <br>
+        <label for="OS">Estado de venta</label>
+        <select name="OS">
+            <option value="1">EN PROCESO</option> 
+            <option value="2">CANCELADA</option> 
+            <option value="3">ENTREGADA</option>
+        </select>
+        <p>
+            <input type="submit" value="Registrar">
+            <input type="reset" value="Borrar">
+            <input type="submit" value="Actualizar">
+        </p>
+        </select>
+    </section>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    
+    <section>
+        <form method="get" action="./tablaVentas.html">
+            <button type="submit">VER VENTAS
+           </form>
     </section>
 
 </body>
+
 </html>

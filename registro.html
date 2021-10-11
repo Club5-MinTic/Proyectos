@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="es-ES">
+
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>registro</title>
+</head>
+
+<body>
+	<header>
+		</div>
+
+	</header>
+	<main>
+		<h1>Listado de Productos</h1>
+		<form>
+			 <div class='field'>
+				 <label>ID</label>
+				 <input type="number" name="id" required placeholder="ID" autocomplete>
+			 </div>
+
+			 <div class='field'>
+				<label>Descripción</label>
+				<input type="text" name="descripción" required placeholder="Descripción" autocomplete>
+			</div>
+
+			<div class='field'>
+				<label>Estado</label>
+				<select>
+					<option selected disabled>Seleccione una opción</option>
+					<option>Disponible</option>
+					<option>No disponible</option>
+				</select>
+			</div>
+
+			<div class='field'>
+				<label>Precio Unitario</label>
+				<input type="number" name="precio unitario" required placeholder="Precio Unitario" autocomplete>
+			</div>
+
+			<div class='gustos'>
+				<label>¿Considera que la información de los productos es adecuada?</label>
+				<div><input type="radio" name="gustos" required autocomplete>Si</div>
+				<div><input type="radio" name="gustos" required autocomplete>No</div>
+			</div>
+
+			<div class='privacidad'>
+				<input type='checkbox' required>
+				<label>Marque aquí para crear el producto</label>
+			</div>
+
+			<div>
+				<input type="submit" value="Actualizar">
+			</div>
+
+
+		</form>
+	</main>
+</body>
+
+</html>
+

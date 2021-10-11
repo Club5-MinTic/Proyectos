@@ -1,12 +1,13 @@
 <!DOCTYPE html>
-<html lang="es">
+<html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="./estilos_sprint2.css">
+    <title>Gestión de ventas</title>
     <link  rel="icon"   href="./media/logo.png" type="imagen/png">
-    <title>Komuya</title>
+    <link rel="stylesheet" href="./estilos_sprint2.css">
+
 </head>
 <body>
     <header>
@@ -18,9 +19,11 @@
             <nav class="minav">
                 <a href="./Formulario.html">Iniciar sesión</a>
             </nav>
-        </div>
+        </div>    
     </header>
+
     <section>
+
         <div id="sidemenu" class="menu-collapsed">
             
             <!-- ENCABEZADO -->
@@ -44,18 +47,16 @@
         <div id="menu-items">
             <div class="item">
                 <a href="index.html">
-                    <div class="icon"><img src="/Menú/simbolo.png" alt=""> </div> 
+                    <div class="icon"><img src="./Menú/simbolo.png" alt=""> </div> 
                     <div class="title"><span>Inicio</span></div>
                 </a>
             </div>
 
-
             <div class="item separator">     
             </div>
 
-
             <div class="item">
-                <a href="./gestionVentas.html">
+                <a href="gestionVentas.html">
                     <div class="icon"><img src="./Menú/simbolo.png" alt=""> </div> 
                     <div class="title"><span>Información de Ventas</span></div>
                 </a>
@@ -66,12 +67,11 @@
 
 
             <div class="item">
-                <a href="./gestionProductos.html">
+                <a href="gestionProductos.html">
                     <div class="icon"><img src="./Menú/simbolo.png" alt=""> </div> 
                     <div class="title"><span>Gestión de productos</span></div>
                 </a>
             </div>
-
 
             <div class="item separator">     
             </div>
@@ -104,10 +104,75 @@
             });
         </script>
     </section>
-    <section>
-        <img src="./media/fondo5.png" alt="Paisaje" width="1300px">
 
+    <section>
+        <br>
+        <br>
+        <br>
+        <br>
+        <br>
+        <br>
+        <br>
+        <br>
+        <br>
+        <br>
+        <br>
+        <br>
+        <br>
+        <h1>REGISTRO DE PRODUCTOS</h1>
+        <label for="id">
+            Ingrese ID del producto.
+            <input name="id"/>
+        </label>
+        <br>
+        <label>
+            Ingrese descripción del producto:
+            <textarea name="comentarios" rows="5" cols="40"></textarea>
+        </label>
+        <br>
+        <label>
+            Ingrese valor unitario:
+            <input type="number">
+        </label>
+        <br>
+        <div class='field'>
+            <label>Estado</label>
+            <select>
+                <option selected disabled>Seleccione una opción</option>
+                <option>Disponible</option>
+                <option>No disponible</option>
+            </select>
+        </div>
+        <br>
+        <div class='gustos'>
+            <label>¿Considera que la información de los productos es adecuada?</label>
+            <div><input type="radio" name="gustos" required autocomplete>Si</div>
+            <div><input type="radio" name="gustos" required autocomplete>No</div>
+        </div>
+        <br>
+        <div class='privacidad'>
+            <input type='checkbox' required>
+            <label>Marque aquí para crear el producto</label>
+        </div>
+        <br>
+        <p>
+            <input type="submit" value="Registrar">
+            <input type="reset" value="Borrar">
+            <input type="submit" value="Actualizar">
+        </p>
+    </section>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    
+    <section>
+        <form method="get" action="./tablaProductos.html">
+            <button type="submit">VER PRODUCTOS
+           </form>
     </section>
 
 </body>
+
 </html>

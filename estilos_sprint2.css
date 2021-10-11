@@ -8,6 +8,7 @@ header{
     overflow: hidden;
     background: #2B3741;
     margin-bottom: 20px;
+    position: fixed;
 }
 #titulo{
     font-family:muli,sans-serif;
@@ -35,8 +36,8 @@ header{
 
 .minav{
     float: right;
-    line-height: 200px;
-    margin-right: 50px;
+    margin-right: 80px;
+    margin-top: 70px;
 
 }
 .minav a {
@@ -52,6 +53,7 @@ header{
 .minav a:hover {
     background: #E97011;
     border-radius: 50px;
+
 
 
 /*************************BARRA-DE-NAVEGACIÓN***************************/    
@@ -235,4 +237,3 @@ ELEMENTOS
 .menu-collapsed .item{
     width: 100px;
 }
-

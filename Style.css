@@ -5,9 +5,8 @@
 }
 
 body {
-    background-image: url("paisaje.png");
-    
-    
+    background-image: url("./media/paisaje.png");
+    background-size: 1400px;
     
 }
 
