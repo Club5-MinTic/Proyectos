@@ -2,12 +2,10 @@ import React from 'react'
 import photo from 'media/photo.png'
 import simbolo from 'media/simbolo.png'
 import 'styles/estilos.css'
-import './contraerMenu.js'
-importScripts 
 
 const Sidebar = () => {
     return (
-        <div>
+        <div className='body'>
             <div id="sidemenu" class="menu-collapsed">
             
                 {/* ENCABEZADO */}

@@ -10,39 +10,57 @@ import Login from './pages/Login';
 import Inicio from './pages/Inicio';
 import PublicLayout from './layouts/PublicLayout';
 import PrivateLayout from 'layouts/PrivateLayout';
+import LoginLayout from 'layouts/LoginLayout';
 
 function App() {
 
   return (
+    
     <Router>
       <Switch>
-        <Route path='/login'>
-          <Login/>
+        <Route path={['/login']}>
+          <LoginLayout>
+            <Switch>
+              <Route path='/login'>
+                <Login/>
+              </Route>
+            </Switch>
+          </LoginLayout>
         </Route>
-        <Route path='/registroProductos'>
+        <Route path={['/registroProductos', '/registroProductos/productos','/registroVentas', '/registroVentas/ventas',
+         '/registroUsuarios', '/registroUsuarios/usuarios']}>
           <PrivateLayout>
-            <RegistroProductos/>
+            <Switch>
+              <Route path='/registroProductos/productos'>
+                <VerProductos/>
+              </Route>
+              <Route path='/registroVentas/ventas'>
+                <VerVentas/>
+              </Route>
+              <Route path='/registroUsuarios/usuarios'>
+                <VerUsuarios/>
+              </Route>
+              <Route path='/registroProductos'>
+                <RegistroProductos/>
+              </Route>
+              <Route path='/registroVentas'>
+                <RegistroVentas/>
+              </Route>
+              <Route path='/registroUsuarios'>
+                <RegistroUsuarios/>
+              </Route>
+
+            </Switch>
           </PrivateLayout>
         </Route>
-        <Route path='/registroVentas'>
-          <RegistroVentas/>
-        </Route>
-        <Route path='/registroUsuarios'>
-          <RegistroUsuarios/>
-        </Route>
-        <Route path='/productos'>
-          <VerProductos/>
-        </Route>
-        <Route path='/ventas'>
-          <VerVentas/>
-        </Route>
-        <Route path='/usuarios'>
-          <VerUsuarios/>
-        </Route>
-        <Route path='/'>
+        <Route path={['/']}>
           <PublicLayout>
-            <Inicio/>
-          </PublicLayout> 
+            <Switch>
+              <Route path='/'>
+                <Inicio/>
+              </Route>
+            </Switch>
+          </PublicLayout>
         </Route>
       </Switch>
     </Router>

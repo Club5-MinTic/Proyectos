@@ -3,7 +3,10 @@ import React from 'react'
 const RegistroVentas = () => {
     return (
         <div>
-            Pagina para hacer registro de ventas
+            <br />
+            <br />
+            <br />
+             Pagina para hacer registro de ventas
         </div>
     )
 }

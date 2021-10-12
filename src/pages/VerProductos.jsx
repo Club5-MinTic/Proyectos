@@ -3,7 +3,10 @@ import React from 'react'
 const VerProductos = () => {
     return (
         <div>
-            Pagina para ver ver productos
+            <br />
+            <br />
+            <br />
+             Pagina para ver productos
         </div>
     )
 }

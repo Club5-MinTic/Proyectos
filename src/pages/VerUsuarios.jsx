@@ -3,7 +3,10 @@ import React from 'react'
 const VerUsuarios = () => {
     return (
         <div>
-            Pagina para ver ver usuarios
+            <br />
+            <br />
+            <br />
+             Pagina para ver usuarios
         </div>
     )
 }

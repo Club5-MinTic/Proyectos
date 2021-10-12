@@ -1,9 +1,10 @@
 import React from 'react'
 
-const LoginLayout = () => {
+const LoginLayout = ({children}) => {
     return (
         <div>
-            Autenticación         
+            Login
+            {children}   
         </div>
     )
 }
