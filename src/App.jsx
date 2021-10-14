@@ -14,8 +14,7 @@ import LoginLayout from 'layouts/LoginLayout';
 
 function App() {
 
-  return (
-    
+  return (  
     <Router>
       <Switch>
         <Route path={['/login']}>
@@ -49,7 +48,6 @@ function App() {
               <Route path='/registroUsuarios'>
                 <RegistroUsuarios/>
               </Route>
-
             </Switch>
           </PrivateLayout>
         </Route>
