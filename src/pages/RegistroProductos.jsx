@@ -71,16 +71,39 @@ const TablaProductos = ({ listaProductos }) => {
 };
 
 const FilaProducto = ({producto}) => {
+    const[edit, setEdit]= useState(false);
+
     return (
-        <tr >
-            <td>{producto.id}</td>
-            <td>{producto.descripcion}</td>
-            <td>{producto.valorUnitario}</td>
-            <td>{producto.estado}</td> 
+        <tr>
+            {edit? (
+                <>
+                    <td>
+                        <input type="text" defaultValue={producto.id} />
+                    </td>
+                    <td>
+                        <input type="text" defaultValue={producto.descripcion} />
+                    </td>
+                    <td>
+                        <input type="text" defaultValue={producto.valorUnitario} />
+                    </td>
+                    <td>
+                        <input type="text" defaultValue={producto.estado} />
+                    </td>
+                </>  
+        ) : (
+            <>
+                <td>{producto.id}</td>
+                <td>{producto.descripcion}</td>
+                <td>{producto.valorUnitario}</td>
+                <td>{producto.estado}</td> 
+            </>
+
+        )}
             <td>
                 <div className='flex w-full justify-around'>
-                    <i className="far fa-edit text-yellow-600 hover:text-yellow-700 "/>
-                    <i className="fas fa-trash-alt text-red-600 hover:text-red-700"/>
+                    <button onClick={()=> setEdit(!edit)} className='border-2 rounded bg-yellow-500 hover:bg-yellow-700 p-1' >Editar</button>
+                    <button className='border-2 rounded bg-red-500 hover:bg-red-700 p-1'>Eliminar</button>
+                    {/* <i className="fas fa-trash-alt text-red-600 hover:text-red-700"/> */}
                 </div>
             </td>     
      </tr>

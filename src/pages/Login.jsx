@@ -1,5 +1,6 @@
 import React from 'react'
 import 'styles/estilosLogin.css'
+import { Link } from 'react-router-dom'
 
 const Login = () => {
     return (
@@ -16,7 +17,9 @@ const Login = () => {
                     <input class="controls" type="email" name="usuario" id="usuario" placeholder="Ingrese su Usuario"/>
                     <input class="controls" type="password" name="correo" id="correo" placeholder="Ingrese su Contraseña"/>
                     <p>Estoy de acuerdo con <a href="#">Terminos y Condiciones</a></p>
-                    <input class="botons" type="submit" value="Ingresar"/>
+                    <Link to='/registroProductos'>
+                        <input class="botons" type="submit" value="Ingresar"/>
+                    </Link>
                     <p><a href="#">¿Ya tengo Cuenta?</a></p>
                 </section>
             </body>
