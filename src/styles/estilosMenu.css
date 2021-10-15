@@ -1,0 +1,55 @@
+:root{
+    --width: 250px;
+    
+}
+
+body{
+    background-size: cover;
+    
+    
+}
+
+.Menu{
+    background-color:#2B3741;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: var(--width);
+    height: 100%;
+}
+#Titulo{
+    text-align: center;
+}
+
+img{
+    
+    top: 0px;
+    left: 0px;
+    width: var(--width);
+    
+}
+
+ul{
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+}
+
+.boton{
+    border-radius: 0;
+    color: white;
+    background-color:rgb(43, 43, 43);
+    border: 0;
+    width: var(--width);
+    height: 40px;
+    cursor: pointer;
+}
+
+.boton:hover{
+    color: white;
+    border-radius: 0;
+    background-color:rgb(60, 60, 60);
+    width: var(--width);
+    height: 40px;
+    cursor: pointer;
+}
