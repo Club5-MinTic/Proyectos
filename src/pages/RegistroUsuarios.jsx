@@ -5,7 +5,6 @@ const RegistroUsuarios = () => {
         <div>
             <h1>Usuarios</h1>
             <form>
-                
                 <label>Rol :</label><br/>
                 <input type="radio" name=" value"/>Administrador <br/>
                 <input type="radio" name=" value"/>Vendedor<br/>
