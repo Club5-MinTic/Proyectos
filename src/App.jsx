@@ -26,13 +26,10 @@ function App() {
             </Switch>
           </LoginLayout>
         </Route>
-        <Route path={['/registroProductos', '/registroProductos/productos','/registroVentas', '/registroVentas/ventas',
+        <Route path={['/registroProductos','/registroVentas', '/registroVentas/ventas',
          '/registroUsuarios', '/registroUsuarios/usuarios']}>
           <PrivateLayout>
             <Switch>
-              <Route path='/registroProductos/productos'>
-                <VerProductos/>
-              </Route>
               <Route path='/registroVentas/ventas'>
                 <VerVentas/>
               </Route>

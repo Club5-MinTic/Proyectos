@@ -7,8 +7,8 @@ const Sidebar = () => {
 
     return (
         <nav className= 'w-64'>
-             <body>
-                <div class="Menu">
+             <div className='body'>
+                <div className="Menu">
                     <img className='p-5 mt-10' src={photo} alt="No se encontró la imagen"/>
                     <h6 id="Titulo" className='p-5 text-white mb-10'>Menú</h6>
                     <div>
@@ -26,7 +26,7 @@ const Sidebar = () => {
                         </Link>
                     </div>
                 </div>
-            </body>
+            </div>
         </nav>
     )
 }
