@@ -145,7 +145,18 @@ const FilaProducto = ({producto, setEjecutarConsulta}) => {
             }).catch(function (error) {
             toast.error("Error al modificar producto")
             console.error(error);
-            });
+            }); 
+/*         const options = {method: 'PUT', url: 'http://localhost:5000/productos/editar'};
+
+        await axios.request(options).then(function (response) {
+            console.log(response.data);
+            toast.success("Producto modificado")
+            setEdit(false);
+            setEjecutarConsulta(true);
+        }).catch(function (error) {
+            console.error(error);
+            toast.error("Error al modificar producto")
+        }); */
     }; 
     const eliminarProducto = async () => {
         const options = {
