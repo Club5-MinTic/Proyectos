@@ -1,16 +1,32 @@
 import Express from 'express';
 import { MongoClient, ObjectId} from 'mongodb';
-import Cors from 'cors';
-import dotenv from 'dotenv';
-import { conectarBD } from './db/db.js'
+import cors from 'cors';
 
-dotenv.config({ path: './.env' });
+const stringConexion = 
+'mongodb+srv://admin:admin123@proyectokomuyaclub5.m7d2v.mongodb.net/myFirstDatabase?retryWrites=true&w=majority'
+
+
+const client = new MongoClient(stringConexion, {
+    useNewUrlParser: true,
+    useUnifiedTopology: true,
+});
+
+let conexion;
 
 const app = Express();
+app.use(cors());
 
-
+app.use(Express.urlencoded({extended:false}));
 app.use(Express.json());
-app.use(Cors());
+
+
+/* app.use((req, res, next) => {
+    res.header('Access-Control-Allow-Origin', '*');
+    res.header('Access-Control-Allow-Headers', 'Authorization, X-API-KEY, Origin, X-Requested-With, Content-Type, Accept, Access-Control-Allow-Request-Method');
+    res.header('Access-Control-Allow-Methods', 'GET, POST, OPTIONS, PUT, DELETE, PATCH');
+    res.header('Allow', 'GET, POST, OPTIONS, PUT, DELETE, PATCH');
+    next();
+}); */
 
 app.get('/productos', (req, res) => {
     console.log("Alguien hizo get en la ruta /productos");
@@ -85,10 +101,17 @@ app.delete('/productos/eliminar', (req, res) => {
 });
 
 const main = () =>{
-    return app.listen(process.env.PORT, () => {
-        console.log(`Escuchando puerto ${process.env.PORT}`);
+    client.connect((err, db)=>{
+        if(err){
+            console.error('Error conectando a la base de datos')
+        }
+        conexion = db.db('komuya');
+        console.log('Conexion exitosa');
+        return app.listen(5000, () => {
+            console.log('Escuchando puerto 5000');
+        });
     });
 };
 
-conectarBD(main);
+main();
 
