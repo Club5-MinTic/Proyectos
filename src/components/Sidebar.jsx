@@ -15,13 +15,13 @@ const Sidebar = () => {
                         <Link to='/'>
                             <button className="boton mb-2">Inicio</button>
                         </Link>
-                        <Link to='/registroProductos'>
+                        <Link to='/gestionProductos'>
                             <button className="boton mb-2">Gestión de productos</button>
                         </Link>
-                        <Link to='/registroVentas'>
+                        <Link to='/gestionVentas'>
                             <button className="boton mb-2">Gestión de ventas</button>
                         </Link>
-                        <Link to='/registroUsuarios'>
+                        <Link to='/usuarios'>
                             <button className="boton mb-2">Gestión de usuarios y roles</button>
                         </Link>
                     </div>

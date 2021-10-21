@@ -16,7 +16,7 @@ const Login = () => {
                     <h4>Iniciar sesión</h4>
                     <input className="controls" type="email" name="usuario" id="usuario" placeholder="Ingrese su Usuario"/>
                     <input className="controls" type="password" name="correo" id="correo" placeholder="Ingrese su Contraseña"/>
-                    <Link to='/registroProductos'>
+                    <Link to='/gestionProductos'>
                         <input className="botons" type="submit" value="Ingresar"/>
                     </Link>
                 </section>

@@ -5,8 +5,8 @@ import { nanoid } from 'nanoid';
 import axios from 'axios';
 
 const RegistroProductos = () => {
-    const [mostrarTabla, setMostrarTabla] = useState(true);
     const [productos, setProductos] = useState([]);
+    const [mostrarTabla, setMostrarTabla] = useState(true);
     const [textoBoton, setTextoBoton] = useState('Registrar Producto')
     const [ejecutarConsulta, setEjecutarConsulta] = useState(true);
 
@@ -55,7 +55,8 @@ const RegistroProductos = () => {
                 </button>
             </div>
             {mostrarTabla ? 
-            (<TablaProductos listaProductos={productos} setEjecutarConsulta={setEjecutarConsulta}/> 
+            (<TablaProductos listaProductos={productos} 
+                setEjecutarConsulta={setEjecutarConsulta}/> 
             ) : (
             <FormularioProductos 
                 setMostrarTabla={setMostrarTabla} 
@@ -69,7 +70,7 @@ const RegistroProductos = () => {
 
 const TablaProductos = ({ listaProductos, setEjecutarConsulta}) => {
     const [busqueda, setBusqueda] = useState('');
-    const [productosFiltro, setProductosFiltro] = useState(listaProductos)
+    const [productosFiltro, setProductosFiltro] = useState(listaProductos);
 
     useEffect(() => {
         console.log('busqueda:', busqueda)
@@ -146,17 +147,6 @@ const FilaProducto = ({producto, setEjecutarConsulta}) => {
             toast.error("Error al modificar producto")
             console.error(error);
             }); 
-/*         const options = {method: 'PUT', url: 'http://localhost:5000/productos/editar'};
-
-        await axios.request(options).then(function (response) {
-            console.log(response.data);
-            toast.success("Producto modificado")
-            setEdit(false);
-            setEjecutarConsulta(true);
-        }).catch(function (error) {
-            console.error(error);
-            toast.error("Error al modificar producto")
-        }); */
     }; 
     const eliminarProducto = async () => {
         const options = {
@@ -180,13 +170,6 @@ const FilaProducto = ({producto, setEjecutarConsulta}) => {
             {edit? (
                 <>
                     <td>{infoNuevoProducto._id}</td>
-{/*                     <td>
-                        <input className='appearance-none rounded relative block w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 focus:outline-none focus:border-blue-500' 
-                        type="text" 
-                        value={infoNuevoProducto.id}
-                        onChange={(e)=> setInfoNuevoProducto({...infoNuevoProducto, id: e.target.value})}
-                        />
-                    </td> */}
                     <td>
                         <input className='appearance-none rounded relative block w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 focus:outline-none focus:border-blue-500' 
                         type="text" 
@@ -238,7 +221,6 @@ const FilaProducto = ({producto, setEjecutarConsulta}) => {
             </td>     
         </tr>
     );
-    
 };
 
 const FormularioProductos =( {setMostrarTabla, listaProductos, setProductos})=> {
@@ -289,6 +271,7 @@ const FormularioProductos =( {setMostrarTabla, listaProductos, setProductos})=> 
                     Ingrese descripción del producto:
                     <input className='appearance-none rounded-none relative block w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 rounded-t-md focus:outline-none focus:ring-blue-500 focus:border-blue-500 focus:z-10 sm:text-sm' 
                     name="descripcion" 
+                    
                     required/>
                 </label>
                 <br/>
@@ -296,6 +279,7 @@ const FormularioProductos =( {setMostrarTabla, listaProductos, setProductos})=> 
                     Ingrese valor unitario:
                     <input className='appearance-none rounded-none relative block w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 rounded-t-md focus:outline-none focus:ring-blue-500 focus:border-blue-500 focus:z-10 sm:text-sm'
                     type="number" 
+                    placeholder="Valor por noche"
                     name='valorUnitario' 
                     min='1'
                     required/>

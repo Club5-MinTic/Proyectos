@@ -2,10 +2,7 @@ import'styles/estilos.css'
 import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
 import RegistroProductos from './pages/RegistroProductos';
 import RegistroVentas from './pages/RegistroVentas';
-import VerProductos from './pages/VerProductos';
-import RegistroUsuarios from './pages/RegistroUsuarios';
-import VerVentas from './pages/VerVentas';
-import VerUsuarios from './pages/VerUsuarios';
+import Usuarios from './pages/Usuarios';
 import Login from './pages/Login';
 import Inicio from './pages/Inicio';
 import PublicLayout from './layouts/PublicLayout';
@@ -26,24 +23,18 @@ function App() {
             </Switch>
           </LoginLayout>
         </Route>
-        <Route path={['/registroProductos','/registroVentas', '/registroVentas/ventas',
-         '/registroUsuarios', '/registroUsuarios/usuarios']}>
+        <Route path={['/gestionProductos','/gestionVentas',
+         '/usuarios', ]}>
           <PrivateLayout>
             <Switch>
-              <Route path='/registroVentas/ventas'>
-                <VerVentas/>
-              </Route>
-              <Route path='/registroUsuarios/usuarios'>
-                <VerUsuarios/>
-              </Route>
-              <Route path='/registroProductos'>
+              <Route path='/gestionProductos'>
                 <RegistroProductos/>
               </Route>
-              <Route path='/registroVentas'>
+              <Route path='/gestionVentas'>
                 <RegistroVentas/>
               </Route>
-              <Route path='/registroUsuarios'>
-                <RegistroUsuarios/>
+              <Route path='/usuarios'>
+                <Usuarios/>
               </Route>
             </Switch>
           </PrivateLayout>
