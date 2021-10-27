@@ -64,9 +64,28 @@ const GestionVentas = () => {
 
 
 const TablaVentas = ({ listaVentas, setEjecutarConsulta}) =>{
+    const [busqueda, setBusqueda] = useState('');
+    const [ventasFiltro, setVentasFiltro] = useState(listaVentas);
+
+    useEffect(() => {
+        console.log('busqueda:', busqueda)
+        console.log('lista original', listaVentas);
+        setVentasFiltro(
+            listaVentas.filter((elemento)=>{
+                return JSON.stringify(elemento).toLowerCase().includes(busqueda);
+            })
+        );
+    }, [busqueda, listaVentas]);
 
     return(
     <div className='w-full px-20 py-5'>
+        <input type="text" 
+        value={busqueda}
+        onChange={e =>setBusqueda(e.target.value)}
+        placeholder = "Buscar"
+        className='border border-gray-600 px-3 py-1 self-end rounded focus:border-blue-700'
+        />
+
         <h1 className='mt-6 text-center text-3xl font-extrabold text-gray-900'>TABLA DE VENTAS</h1>
         <br />
         <table className='tabla p-20'>
@@ -86,7 +105,7 @@ const TablaVentas = ({ listaVentas, setEjecutarConsulta}) =>{
                 </tr>
             </thead>
             <tbody>
-                {listaVentas.map((venta) => {
+                {ventasFiltro.map((venta) => {
                     return(
                         <FilaVenta key={nanoid()}
                         venta={venta}

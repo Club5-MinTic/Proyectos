@@ -4,6 +4,7 @@ import 'react-toastify/dist/ReactToastify.css';
 import { nanoid } from 'nanoid';
 import { obtenerProductos, crearProducto, editarProducto, eliminarProduct} from 'utils/api.js'
 
+
 const RegistroProductos = () => {
     const [productos, setProductos] = useState([]);
     const [mostrarTabla, setMostrarTabla] = useState(true);

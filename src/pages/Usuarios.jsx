@@ -1,6 +1,28 @@
-import React from 'react'
+import React, {useEffect, useState} from 'react'
+import { editarUsuario } from 'utils/api';
+import { obtenerUsuarios } from 'utils/api';
+import { nanoid } from 'nanoid';
 
-const RegistroUsuarios = () => {
+
+const Usuarios = () => {
+    const [usuarios, setUsuarios] = useState([]);
+
+    useEffect(() => {
+        const fetchUsuarios = async () => {
+          await obtenerUsuarios(
+            (respuesta) => {
+              console.log('usuarios', respuesta.data);
+              setUsuarios(respuesta.data);
+            },
+            (err) => {
+              console.log(err);
+            }
+          );
+        };
+        fetchUsuarios();
+      }, []);
+
+
     return (
         <div className='w-full px-20 py-5'>
             <h1 className='mt-6 text-center text-3xl font-extrabold text-gray-900 p-6'>Gestión de usuarios y roles</h1>
@@ -12,56 +34,100 @@ const RegistroUsuarios = () => {
                         <th>Documento</th>
                         <th>Rol</th>
                         <th>Estado</th>
-                        <th>Editar/Eliminar</th>
                     </tr>
                 </thead>
                 <tbody>
-                    <tr>
-                        <td>12345</td>
-                        <td>Pedro</td>
-                        <td>100367489</td>
-                        <td>Vendedor</td>
-                        <td>Pendiente</td>
-                        <td>
-                            <div className='flex w-full justify-around'>
-                                <i className='fas fa-edit text-yellow-600 hover:text-yellow-700'></i>
-                                <i className='fas fa-trash-alt text-red-600 hover:text-red-700'></i>
-                            </div>
-                        </td>
-                    
+                    {usuarios.map((user) => {
+                        return (
+                        <tr key={nanoid()}>
+                            <td>{user._id.slice(20)}</td>
+                            <td>{user.nombre}</td>
+                            <td>{user.documento}</td>
+                            <td>
+                            <RolesUsuario user={user} />
+                            </td>
+                            <td>
+                            <EstadoUsuario user={user} />
+                            </td>
+                        </tr>
+                        );
+                    })}
+                </tbody>     
+            </table>
+        </div>
 
-                    </tr>
-                    <tr>
-                        <td>12346</td>
-                        <td>Alejandra</td>
-                        <td>123689467</td>
-                        <td>Admin</td>
-                        <td>Autorizado</td>
-                        <td>
-                            <div className='flex w-full justify-around'>
-                                <i className='fas fa-edit text-yellow-600 hover:text-yellow-700'></i>
-                                <i className='fas fa-trash-alt text-red-600 hover:text-red-700'></i>                  
-                            </div>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>12347</td>
-                        <td>Fernando</td>
-                        <td>289367567</td>
-                        <td>Vendedor</td>
-                        <td>No Autorizado</td>
-                        <td>
-                            <div className='flex w-full justify-around'>
-                                <i className='fas fa-edit text-yellow-600 hover:text-yellow-700'></i>
-                                <i className='fas fa-trash-alt text-red-600 hover:text-red-700'></i>   
-                            </div>
-                        </td>
-                    </tr>
-                </tbody>      
-                </table>
-            </div>
+    )};
 
-    )
-}
+    const RolesUsuario = ({ user }) => {
+        const [rol, setRol] = useState(user.rol);
+      
+        useEffect(() => {
+          const editUsuario = async () => {
+            await editarUsuario(
+              user._id,
+              { rol },
+              (res) => {
+                console.log(res);
+              },
+              (err) => {
+                console.error(err);
+              }
+            );
+          };
+          if (user.rol !== rol) {
+            editUsuario();
+          }
+        }, [rol, user]);
+      
+        return (
+          <select value={rol} onChange={(e) => setRol(e.target.value)}>
+            <option value='' disabled>
+              Seleccione un rol
+            </option>
+            <option value='admin'>Admin</option>
+            <option value='vendedor'>Vendedor</option>
+            <option value='sin rol'>Sin rol</option>
+          </select>
+        );
+      };
+      const EstadoUsuario = ({ user }) => {
+        const [estado, setEstado] = useState(user.estado ?? '');
+      
+        useEffect(() => {
+          const editUsuario = async () => {
+            await editarUsuario(
+              user._id,
+              { estado },
+              (res) => {
+                console.log(res);
+              },
+              (err) => {
+                console.error(err);
+              }
+            );
+          };
+          if (user.estado !== estado) {
+            editUsuario();
+          }
+        }, [estado, user]);
+      
+        return (
+          <select value={estado} onChange={(e) => setEstado(e.target.value)}>
+            <option value='' disabled>
+              Seleccione un estado
+            </option>
+            <option value='autorizado' className='text-green-500'>
+              Autorizado
+            </option>
+            <option value='pendiente' className='text-yellow-500'>
+              Pendiente
+            </option>
+            <option value='rechazado' className='text-red-500'>
+              Rechazado
+            </option>
+          </select>
+        );
+      };
 
-export default RegistroUsuarios
+
+export default Usuarios
