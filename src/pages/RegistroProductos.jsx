@@ -2,31 +2,25 @@ import React, {useEffect, useState, useRef} from 'react'
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import { nanoid } from 'nanoid';
-import axios from 'axios';
+import { obtenerProductos, crearProducto, editarProducto, eliminarProduct} from 'utils/api.js'
 
 const RegistroProductos = () => {
     const [productos, setProductos] = useState([]);
     const [mostrarTabla, setMostrarTabla] = useState(true);
     const [textoBoton, setTextoBoton] = useState('Registrar Producto')
-    const [ejecutarConsulta, setEjecutarConsulta] = useState(true);
+    const [ejecutarConsulta, setEjecutarConsulta] = useState(false);
 
-    const obtenerProductos = async () => {
-        const options = {method: 'GET', url: 'http://localhost:5000/productos'};
-
-        await axios
-        .request(options)
-        .then(function (response) {
-            setProductos(response.data);
-        })
-        .catch(function (error) {
-        console.error(error);
-        });
-        setEjecutarConsulta(false);
-
-    };
     useEffect(() => {
         if (ejecutarConsulta){
-            obtenerProductos();
+            obtenerProductos(
+                (response)=>{
+                    setProductos(response.data)
+                },
+                (error)=>{
+                    console.error(error)
+                }
+                );
+            setEjecutarConsulta(false);
         }
     }, [ejecutarConsulta])
 
@@ -130,26 +124,34 @@ const FilaProducto = ({producto, setEjecutarConsulta}) => {
     const actualizarProducto = async() =>{
         console.log(infoNuevoProducto);
         //Enviar info al backend
-        const options = {
-            method: 'PATCH',
-            url: 'http://localhost:5000/productos/editar',
-            headers: {'Content-Type': 'application/json'},
-            data: {...infoNuevoProducto, _id: producto._id}
-            };
-              
-        await axios.request(options).then(function (response) {
-            toast.success("Producto modificado")
-            console.log(response.data);
-            setEdit(false);
-            setEjecutarConsulta(true);
 
-            }).catch(function (error) {
-            toast.error("Error al modificar producto")
-            console.error(error);
-            }); 
-    }; 
+        await editarProducto(
+            {...infoNuevoProducto, _id: producto._id},
+            (response) => {
+                toast.success("Producto modificado")
+                console.log(response.data);
+                setEdit(false);
+                setEjecutarConsulta(true);
+            }, (error) => {
+                toast.error("Error al modificar producto")
+                console.error(error);
+            }
+
+        );
+    };
     const eliminarProducto = async () => {
-        const options = {
+        await eliminarProduct (
+            {_id: producto._id},
+            (response) => {
+                console.log(response.data);
+                toast.success("Producto eliminado");
+                setEjecutarConsulta(true);
+            }, (error) => {
+                console.error(error);
+                toast.error("Error al eliminar producto");
+            }
+        );
+/*         const options = {
             method: 'DELETE',
             url: 'http://localhost:5000/productos/eliminar',
             headers: {'Content-Type': 'application/json'},
@@ -163,7 +165,7 @@ const FilaProducto = ({producto, setEjecutarConsulta}) => {
         }).catch(function (error) {
             console.error(error);
             toast.error("Error al eliminar producto");
-        });
+        }); */
     };
     return (
         <tr>
@@ -215,6 +217,7 @@ const FilaProducto = ({producto, setEjecutarConsulta}) => {
                         <i onClick={()=> setEdit(!edit)} className="fas fa-edit text-yellow-600 hover:text-yellow-700"/>
                         <i onClick={()=> eliminarProducto()} className="fas fa-trash-alt text-red-600 hover:text-red-700"/>
                         </>
+                        
                     )} 
 
                 </div>
@@ -233,25 +236,19 @@ const FormularioProductos =( {setMostrarTabla, listaProductos, setProductos})=> 
         fd.forEach((value, key) => {
             nuevoProducto[key] = value
         });
-        const options = {
-            method: 'POST',
-            url: 'http://localhost:5000/productos/nuevo',
-            headers: {'Content-Type': 'application/json'},
-            data: {
-              id: nuevoProducto.id,
-              descripcion: nuevoProducto.descripcion,
-              valorUnitario: nuevoProducto.valorUnitario,
-              estado: nuevoProducto.estado
-            }
-          };
-          
-         await axios.request(options).then(function (response) {
-            console.log(response.data);
-            toast.success("Producto Registrado");
-          }).catch(function (error) {
-            console.error(error);
-            toast.error("Error registrando producto")
-          });
+
+        await crearProducto({
+            id: nuevoProducto.id,
+            descripcion: nuevoProducto.descripcion,
+            valorUnitario: nuevoProducto.valorUnitario,
+            estado: nuevoProducto.estado
+        },  (response) => {
+            console.log(response.data)
+            toast.success("Producto agregado")
+        }, (error) => {
+            console.log(error)
+            toast.error("Error al agregar producto")
+        });
         setMostrarTabla(true);
         
     };
@@ -260,12 +257,6 @@ const FormularioProductos =( {setMostrarTabla, listaProductos, setProductos})=> 
             <h1 className='mt-6 text-center text-3xl font-extrabold text-gray-900'>REGISTRO DE PRODUCTOS</h1>
             <br />
             <form ref={form} onSubmit={submitForm}>
-{/*                 <label htmlFor="id">
-                    Ingrese ID del producto.
-                    <input required className='appearance-none rounded-none relative block w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 rounded-t-md focus:outline-none focus:ring-blue-500 focus:border-blue-500 focus:z-10 sm:text-sm'
-                    name="id"
-                    />
-                </label> */}
                 <br/>
                 <label htmlFor='descripcion'>
                     Ingrese descripción del producto:

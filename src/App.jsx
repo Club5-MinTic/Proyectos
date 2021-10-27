@@ -1,7 +1,7 @@
 import'styles/estilos.css'
 import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
 import RegistroProductos from './pages/RegistroProductos';
-import RegistroVentas from './pages/RegistroVentas';
+import GestionVentas from './pages/GestionVentas';
 import Usuarios from './pages/Usuarios';
 import Login from './pages/Login';
 import Inicio from './pages/Inicio';
@@ -31,7 +31,7 @@ function App() {
                 <RegistroProductos/>
               </Route>
               <Route path='/gestionVentas'>
-                <RegistroVentas/>
+                <GestionVentas/>
               </Route>
               <Route path='/usuarios'>
                 <Usuarios/>

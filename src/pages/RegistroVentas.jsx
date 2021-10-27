@@ -1,8 +1,8 @@
 import React, { useState, useEffect, useRef } from 'react'
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
-import axios from 'axios';
 import { nanoid } from 'nanoid';
+import axios from 'axios';
 
 const RegistroVentas = () => {
     const [ventas, setVentas] = useState([]);
@@ -82,7 +82,7 @@ const TablaVentas = ({listaVentas, setEjecutarConsultaVentas}) =>{
             })
         );
 
-    }, [busquedaVentas, listaVentas])
+    }, [busquedaVentas, listaVentas]);
 
     return(
     <div className='w-full px-20 py-5'>
@@ -136,15 +136,17 @@ const FilaVenta = ({venta, setEjecutarConsultaVentas}) =>{
         docCliente: venta.docCliente,
         nameCliente: venta.nameCliente,
         vendedor: venta.vendedor,
-        estado: venta
-    })
-    const ActualizarVenta = async() => {
+        estado: venta.estado
+});
+    const actualizarVenta = async() => {
+
+        console.log(infoNuevaVenta)
 
         const options = {
             method: 'PATCH',
-            url: `http://localhost:5000/ventas/${venta._id}`,
+            url: 'http://localhost:5000/ventas/editar',
             headers: {'Content-Type': 'application/json'},
-            data: {...infoNuevaVenta}
+            data: {...infoNuevaVenta, _id:venta._id}
           };
           
         await axios.request(options).then(function (response) {
@@ -256,7 +258,7 @@ const FilaVenta = ({venta, setEjecutarConsultaVentas}) =>{
                 <div className='flex w-full justify-around'>
                 {editar ? (
                         <>           
-                        <i onClick={()=> ActualizarVenta()} className="fas fa-check-circle text-green-500 hover:text-green-700"/>
+                        <i onClick={()=> actualizarVenta()} className="fas fa-check-circle text-green-500 hover:text-green-700"/>
                         <i onClick={()=> setEditar(!editar)} className="fas fa-window-close text-red-600 hover:text-red-700"/>
                         </>
                     ):(
@@ -300,8 +302,10 @@ const FormularioVentas = ({setMostrarTablaVentas, listaVentas, setVentas}) =>{
           
           await axios.request(options).then(function (response) {
             console.log(response.data);
+            toast.success("Venta Registrada");
           }).catch(function (error) {
             console.error(error);
+            toast.error("Error registrando venta")
           });
           setMostrarTablaVentas(true);
         
