@@ -23,9 +23,12 @@ rutasUsuarios.route('/usuarios/nuevo').post((req, res) => {
 
 });
 
-rutasUsuarios.route('/usuarios/editar').patch((req, res) => {
+/* rutasUsuarios.route('/usuarios/editar').patch((req, res) => {
     editarUsuario(req.body, genericCallback(res));
-});
+}); */
+rutasUsuarios.route('/usuarios/:id').patch((req, res) => {
+    editarUsuario(req.params.id, req.body, genericCallback(res));
+  });
 
 rutasUsuarios.route('/usuarios/eliminar').delete((req, res) => {
     eliminarUsuario(req.body._id, genericCallback(res));
