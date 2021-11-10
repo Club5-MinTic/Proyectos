@@ -1,5 +1,6 @@
 import {getDB } from '../../db/db.js';
 import { ObjectId } from 'mongodb';
+import jwt_decode from 'jwt-decode'
 
 const obtenerUsuarios = async (callback) =>{
     const conexion = getDB();
@@ -7,6 +8,27 @@ const obtenerUsuarios = async (callback) =>{
     .collection('usuarios').find({}).limit(50).
     toArray(callback);
 };
+
+const consultarOCrearUsuario = async (req, callback) =>{
+    const token = req.headers.authorization.split('Bearer ')[1];
+    const user = jwt_decode(token)['http://localhost/userData'];
+    console.log(user);
+
+    const conexion = getDB();
+    await conexion.collection('usuarios').findOne({email: user.email}, async(err, response)=>{
+        console.log("Response consulta bd", response);
+        if (response){
+            callback(err, response)
+
+        }else{
+            user.auth0Id = user._id;
+            delete user._id;
+            user.rol="Sin rol"
+            await crearUsuario(user, (err, respuesta)=> callback(err, user))
+        }
+    })
+
+}
 
 const crearUsuario = async (datosUsuario, callback) => {
     const conexion = getDB();
@@ -41,4 +63,4 @@ const eliminarUsuario = async (_id, callback) =>{
 
 };
 
-export {obtenerUsuarios, crearUsuario, editarUsuario, eliminarUsuario }
+export {obtenerUsuarios, crearUsuario, editarUsuario, eliminarUsuario, consultarOCrearUsuario }

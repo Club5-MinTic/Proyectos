@@ -2,9 +2,12 @@ import Express from 'express';
 import cors from 'cors';
 import dotenv from 'dotenv';
 import { conectarBD } from './db/db.js';
+import jwt from 'express-jwt';
+import jwks from 'jwks-rsa';
 import rutasProductos from './views/productos/rutas.js';
 import rutasVentas from './views/ventas/rutas.js';
 import rutasUsuarios from './views/usuarios/rutas.js';
+import autorizacionEstado from './middleware/autorizacionEstado.js';
 
 dotenv.config({path:'./.env'});
 
@@ -13,6 +16,22 @@ app.use(cors());
 
 app.use(Express.urlencoded({extended:false}));
 app.use(Express.json());
+
+var jwtCheck = jwt({
+    secret: jwks.expressJwtSecret({
+        cache: true,
+        rateLimit: true,
+        jwksRequestsPerMinute: 5,
+        jwksUri: 'https://misiontic-komuya.us.auth0.com/.well-known/jwks.json'
+  }),
+  audience: 'api-autenticacion-komuya-mintic',
+  issuer: 'https://misiontic-komuya.us.auth0.com/',
+  algorithms: ['RS256']
+});
+
+app.use(jwtCheck);
+
+app.use(autorizacionEstado)
 
 app.use(rutasUsuarios);
 app.use(rutasProductos);
