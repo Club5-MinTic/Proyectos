@@ -31,7 +31,7 @@ const Usuarios = () => {
                     <tr>
                         <th>Id</th>
                         <th>Nombre</th>
-                        <th>Documento</th>
+                        <th>Email</th>
                         <th>Rol</th>
                         <th>Estado</th>
                     </tr>
@@ -41,8 +41,8 @@ const Usuarios = () => {
                         return (
                         <tr key={nanoid()}>
                             <td>{user._id.slice(20)}</td>
-                            <td>{user.nombre}</td>
-                            <td>{user.documento}</td>
+                            <td>{user.name}</td>
+                            <td>{user.email}</td>
                             <td>
                             <RolesUsuario user={user} />
                             </td>
@@ -84,9 +84,9 @@ const Usuarios = () => {
             <option value='' disabled>
               Seleccione un rol
             </option>
-            <option value='admin'>Admin</option>
-            <option value='vendedor'>Vendedor</option>
-            <option value='sin rol'>Sin rol</option>
+            <option value='Admin'>Admin</option>
+            <option value='Vendedor'>Vendedor</option>
+            <option value='Sin rol'>Sin rol</option>
           </select>
         );
       };

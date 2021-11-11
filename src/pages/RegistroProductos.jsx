@@ -3,6 +3,7 @@ import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import { nanoid } from 'nanoid';
 import { obtenerProductos, crearProducto, editarProducto, eliminarProduct} from 'utils/api.js'
+import PrivateComponent from 'components/PrivateComponent';
 
 
 const RegistroProductos = () => {
@@ -95,7 +96,9 @@ const TablaProductos = ({ listaProductos, setEjecutarConsulta}) => {
                             <th>Descripción</th>
                             <th>Precio Unitario por noche</th>
                             <th>Estado</th> 
+                            <PrivateComponent roles={['Admin']}>
                             <th>Editar/Eliminar</th>    
+                            </PrivateComponent>
                         </tr>
                     </thead>
                     <tbody>
@@ -206,23 +209,25 @@ const FilaProducto = ({producto, setEjecutarConsulta}) => {
             </>
 
         )}
-            <td>
-                <div className='flex w-full justify-around'>
-                    {edit ? (
-                        <>           
-                        <i onClick={()=> actualizarProducto()} className="fas fa-check-circle text-green-500 hover:text-green-700"/>
-                        <i onClick={()=> setEdit(!edit)} className="fas fa-window-close text-red-600 hover:text-red-700"/>
-                        </>
-                    ):(
-                        <>
-                        <i onClick={()=> setEdit(!edit)} className="fas fa-edit text-yellow-600 hover:text-yellow-700"/>
-                        <i onClick={()=> eliminarProducto()} className="fas fa-trash-alt text-red-600 hover:text-red-700"/>
-                        </>
-                        
-                    )} 
+            <PrivateComponent roles={['Admin']}>
+                <td>
+                    <div className='flex w-full justify-around'>
+                        {edit ? (
+                            <>           
+                            <i onClick={()=> actualizarProducto()} className="fas fa-check-circle text-green-500 hover:text-green-700"/>
+                            <i onClick={()=> setEdit(!edit)} className="fas fa-window-close text-red-600 hover:text-red-700"/>
+                            </>
+                        ):(
+                            <>
+                            <i onClick={()=> setEdit(!edit)} className="fas fa-edit text-yellow-600 hover:text-yellow-700"/>
+                            <i onClick={()=> eliminarProducto()} className="fas fa-trash-alt text-red-600 hover:text-red-700"/>
+                            </>
+                            
+                        )} 
 
-                </div>
-            </td>     
+                    </div>
+                </td>     
+            </PrivateComponent>
         </tr>
     );
 };

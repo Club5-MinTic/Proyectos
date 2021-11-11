@@ -130,9 +130,9 @@ const FilaVenta = ({venta, setEjecutarConsulta}) => {
         vendedor: venta.vendedor,
         estado: venta.estado
 });
-    const ActualizarVenta = async() => {
-        await editarVenta(
-            {...infoNuevaVenta, _id:venta._id},
+    const actualizarVenta = async() => {
+        await editarVenta(venta._id,
+            {...infoNuevaVenta},
             (response) => {
                 toast.success("Venta modificada")
                 console.log(response.data);
@@ -244,7 +244,7 @@ const FilaVenta = ({venta, setEjecutarConsulta}) => {
             <div className='flex w-full justify-around'>
             {edit? (
                     <>           
-                    <i onClick={()=> ActualizarVenta()}  className="fas fa-check-circle text-green-500 hover:text-green-700"/>
+                    <i onClick={()=> actualizarVenta()}  className="fas fa-check-circle text-green-500 hover:text-green-700"/>
                     <i onClick={()=> setEdit(!edit)} className="fas fa-window-close text-red-600 hover:text-red-700"/>
                     </>
                 ):(
